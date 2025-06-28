@@ -14,3 +14,4 @@
 #### Questions to be addressed
 
 -   How does smoking and alcohol affect an individuals chances to have diabetes?
+-   Does the impact of heart disease/attack or stroke effect whether an indiviudal gets diabetes? Does this differ between men and women?
