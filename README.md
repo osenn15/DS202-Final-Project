@@ -12,27 +12,27 @@ Due to the large number of variables and observations, the original data set wou
 
 #### Variables
 
--   
+-   **Diabetes_012:** categorical variable where 0 is for no diabetes or only during pregnancy, 1 is for prediabetes, and 2 is for diabetes.
 
--   
+-   **HighBP:** categorical variable where 0 indicates no high blood pressure and 1 indicates that an individual has been told they have high blood pressure by a doctor, nurse, or other health professional.
 
--   
+-   **HighChol:** categorical variable where 0 indicates no high cholesterol and 1 indicates that an individual has been told by a doctor, nurse or other health professional that their blood cholesterol is high.
 
--   
+-   **CholCheck:** categorical variable where 0 indicates an individual has not had a cholesterol check in the last 5 years and 1 is that they have. 
 
--   
+-   **BMI:** numerical variable of an individual's body mass index.
 
--   
+-   **Smoker:** categorical variable where 0 indicates an individual has not smoked at least 100 cigarettes in their life and 1 indicates they have.
 
--   
+-   **Stroke:** categorical variable where 0 indicates no stroke for an individual and 1 indicates they have been told they had a stroke.
 
--   
+-   **HeartDiseaseorAttack:** categorical variable where 0 indicates respondents that have never reported having coronary heart disease (CHD) or myocardial infarction (MI) and 1 indicates they have.
 
--   
+-   **PhysActivity:** categorical variable where 0 indicates no physical activity in the last 30 days besides an individual's regular job and 1 indicates physical activity or exercise during the past 30 days other than their regular job.
 
--   
+-   **Fruits:** categorical variable where 0 indicates no fruits eaten during the day and 1 indicates fruit consumption one or more times per day. 
 
--   
+-   **Veggies:** categorical variable where 0 indicates no vegetables eaten during the day and 1 indicates vegetable consumption one or more times per day. 
 
 -   **HvyAlcoholConsump:** categorical variable where 1 indicates a heavy drinker and 0 is not a heavy drinker. Heavy drinker is defined as adult men having more than 14 drinks per week and adult women having more than 7 drinks per week.
 
