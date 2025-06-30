@@ -62,5 +62,5 @@ The data set we are using was previously cleaned by Alex Teboul on Kaggle with t
 
 -   How does smoking and alcohol affect an individuals chances to have diabetes?
 -   Is there a relationship between heart disease/attack or stroke and diabetes? Does this differ between men and women?
--   How do physical activity and diet (eating fruits and veggies) affect the likelihood of getting diabetes? Is one significantly more influential than the other?
+-   How do physical activity and diet (eating fruits and vegetables) affect the likelihood of getting diabetes? Is one significantly more influential than the other?
 -   What is the relationship between mental health and diabetes? Is poor mental health associated with poor physical activity levels and/or diet which in turn affects the occurrence of diabetes?
