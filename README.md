@@ -54,7 +54,7 @@ The data set we are using was previously cleaned by Alex Teboul on Kaggle with t
 
 -   **Age:** categorical variable with 13 levels that indicate the age range of the participant. 1 = 18-24, 2 = 25-29, 3 = 30-34, 4 = 35-39, 5 = 40-44, 6 = 45-49, 7 = 50-54, 8 = 55-59, 9 = 60-64, 10 = 65-69, 11 = 70-74, 12 = 75-79, 13 = 80 or older.
 
--   **Education:** categorical variable with 6 levels that indicates education levle. 1 = never attended or only kindergarten, 2 = grades 1-8 (Elementary), 3 = grades 9-11 (some high school), 4 = grade 12 or GED (high school graduate), 5 = college 1-3 years (some college or technical school), 6 = college 4 years or more (college graduate).
+-   **Education:** categorical variable with 6 levels that indicates education level. 1 = never attended or only kindergarten, 2 = grades 1-8 (Elementary), 3 = grades 9-11 (some high school), 4 = grade 12 or GED (high school graduate), 5 = college 1-3 years (some college or technical school), 6 = college 4 years or more (college graduate).
 
 -   **Income:** categorical variable with 8 levels that indicate income level. 1 = less than \$10,000, 2 = less than \$15,000, 3 = less than \$20,000, 4 = less than \$25,000, 5 = less than \$35,000, 6 = less than \$50,000, 7 = less than \$75,000, 8 = \$75,000 or more
 
@@ -62,3 +62,5 @@ The data set we are using was previously cleaned by Alex Teboul on Kaggle with t
 
 -   How does smoking and alcohol affect an individuals chances to have diabetes?
 -   Is there a relationship between heart disease/attack or stroke and diabetes? Does this differ between men and women?
+-   How do physical activity and diet (eating fruits and veggies) affect the likelihood of getting diabetes? Is one significantly more influential than the other?
+-   What is the relationship between mental health and diabetes? Is poor mental health associated with poor physical activity levels and/or diet which in turn affects the occurrence of diabetes?
