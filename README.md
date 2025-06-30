@@ -10,6 +10,8 @@ Due to the large number of variables and observations, the original data set wou
 
 #### Data Cleaning
 
+The data set we are using was previously cleaned by Alex Teboul on Kaggle with the notebook found here: https://www.kaggle.com/code/alexteboul/diabetes-health-indicators-dataset-notebook. He compacted the data from the original 330 columns to the 22 we have now. This cleaning renamed columns for readability, removed instances with NA values, and cleaned up values to have 0 = no and 1 = yes for binary variables.
+
 #### Variables
 
 -   **Diabetes_012:** categorical variable where 0 is for no diabetes or only during pregnancy, 1 is for prediabetes, and 2 is for diabetes.
