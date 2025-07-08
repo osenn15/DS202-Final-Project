@@ -12,6 +12,51 @@ Due to the large number of variables and observations, the original data set wou
 
 The data set we are using was previously cleaned by Alex Teboul on Kaggle with the notebook found here: <https://www.kaggle.com/code/alexteboul/diabetes-health-indicators-dataset-notebook>. He compacted the data from the original 330 columns to the 22 we have now. This cleaning renamed columns for readability, removed instances with NA values, and cleaned up values to have 0 = no and 1 = yes for binary variables.
 
+All of the categorical variables were of numeric type, so we changed them all to be factors. In addition, we wanted to combine the Fruits and Veggies column so that we could look at one variable that reflected diet. We called this column Fruits_and_Veggies and gave it 3 levels, 2 for an individual that said they eat both fruits and vegetables, 1 for an individual that eats either fruits or vegetables but not both, and 0 for someone that says they eat neither. The code for those modifications is below.
+
+```{r}
+library(tidyverse)
+
+health_data <- read.csv("C:\\Users\\rosee\\OneDrive\\Documents\\Iowa State\\DS 2020\\final project\\DS202-Final-Project\\HealthFactor.csv")
+
+#make categorical variables of type factor
+health_data <- health_data %>% 
+  mutate(
+    Diabetes_012 = as.factor(Diabetes_012),
+    HighBP = as.factor(HighBP),
+    HighChol = as.factor(HighChol),
+    CholCheck = as.factor(CholCheck),
+    Smoker = as.factor(Smoker),
+    Stroke = as.factor(Stroke),
+    HeartDiseaseorAttack = as.factor(HeartDiseaseorAttack),
+    PhysActivity = as.factor(PhysActivity),
+    Fruits = as.factor(Fruits),
+    Veggies = as.factor(Veggies),
+    HvyAlcoholConsump = as.factor(HvyAlcoholConsump),
+    AnyHealthcare = as.factor(AnyHealthcare),
+    NoDocbcCost = as.factor(NoDocbcCost),
+    GenHlth = as.factor(GenHlth),
+    DiffWalk = as.factor(DiffWalk),
+    Sex = as.factor(Sex),
+    Age = as.factor(Age),
+    Education = as.factor(Education),
+    Income = as.factor(Income)
+  )
+  
+
+
+#add fruits_and_veggies feature
+health_data <- health_data %>% mutate(
+  Fruits_and_Veggies = if_else(Fruits == 1 & Veggies == 1, 2,
+                               if_else(Fruits == 1 | Veggies == 1, 1, 0)),
+  Fruits_and_Veggies = as.factor(Fruits_and_Veggies)
+) %>% 
+  relocate(
+    Diabetes_012:Veggies,
+    Fruits_and_Veggies
+  )
+```
+
 #### Variables
 
 -   **Diabetes_012:** categorical variable where 0 is for no diabetes or only during pregnancy, 1 is for prediabetes, and 2 is for diabetes.
@@ -35,6 +80,8 @@ The data set we are using was previously cleaned by Alex Teboul on Kaggle with t
 -   **Fruits:** categorical variable where 0 indicates no fruits eaten during the day and 1 indicates fruit consumption one or more times per day.
 
 -   **Veggies:** categorical variable where 0 indicates no vegetables eaten during the day and 1 indicates vegetable consumption one or more times per day.
+
+-   **Fruits_and_Veggies:** categorical variable where 0 indicates no fruits or vegetables eaten during the day, 1 indicates eating some fruit or some vegetables every day, and 2 indicates eating both fruits and vegetables every day.
 
 -   **HvyAlcoholConsump:** categorical variable where 1 indicates a heavy drinker and 0 is not a heavy drinker. Heavy drinker is defined as adult men having more than 14 drinks per week and adult women having more than 7 drinks per week.
 
