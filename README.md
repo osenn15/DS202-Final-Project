@@ -10,7 +10,7 @@ Due to the large number of variables and observations, the original data set wou
 
 #### Data Cleaning
 
-The data set we are using was previously cleaned by Alex Teboul on Kaggle with the notebook found here: https://www.kaggle.com/code/alexteboul/diabetes-health-indicators-dataset-notebook. He compacted the data from the original 330 columns to the 22 we have now. This cleaning renamed columns for readability, removed instances with NA values, and cleaned up values to have 0 = no and 1 = yes for binary variables.
+The data set we are using was previously cleaned by Alex Teboul on Kaggle with the notebook found here: <https://www.kaggle.com/code/alexteboul/diabetes-health-indicators-dataset-notebook>. He compacted the data from the original 330 columns to the 22 we have now. This cleaning renamed columns for readability, removed instances with NA values, and cleaned up values to have 0 = no and 1 = yes for binary variables.
 
 #### Variables
 
@@ -20,7 +20,7 @@ The data set we are using was previously cleaned by Alex Teboul on Kaggle with t
 
 -   **HighChol:** categorical variable where 0 indicates no high cholesterol and 1 indicates that an individual has been told by a doctor, nurse or other health professional that their blood cholesterol is high.
 
--   **CholCheck:** categorical variable where 0 indicates an individual has not had a cholesterol check in the last 5 years and 1 is that they have. 
+-   **CholCheck:** categorical variable where 0 indicates an individual has not had a cholesterol check in the last 5 years and 1 is that they have.
 
 -   **BMI:** numerical variable of an individual's body mass index.
 
@@ -32,9 +32,9 @@ The data set we are using was previously cleaned by Alex Teboul on Kaggle with t
 
 -   **PhysActivity:** categorical variable where 0 indicates no physical activity in the last 30 days besides an individual's regular job and 1 indicates physical activity or exercise during the past 30 days other than their regular job.
 
--   **Fruits:** categorical variable where 0 indicates no fruits eaten during the day and 1 indicates fruit consumption one or more times per day. 
+-   **Fruits:** categorical variable where 0 indicates no fruits eaten during the day and 1 indicates fruit consumption one or more times per day.
 
--   **Veggies:** categorical variable where 0 indicates no vegetables eaten during the day and 1 indicates vegetable consumption one or more times per day. 
+-   **Veggies:** categorical variable where 0 indicates no vegetables eaten during the day and 1 indicates vegetable consumption one or more times per day.
 
 -   **HvyAlcoholConsump:** categorical variable where 1 indicates a heavy drinker and 0 is not a heavy drinker. Heavy drinker is defined as adult men having more than 14 drinks per week and adult women having more than 7 drinks per week.
 
