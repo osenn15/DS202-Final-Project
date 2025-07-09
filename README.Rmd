@@ -129,27 +129,68 @@ For this question we wanted to look at how diet and physical activity affect the
 
 This first graphic is a look at basic fruit consumption and diabetes as well basic vegetable consumption and diabetes
 
-```{r, figures-side, fig.show='hold', out.width="50%"}
+```{r, fig.show='hold', out.width="50%"}
 health_data %>% ggplot(aes(x = Fruits, fill = Diabetes_012)) +
   geom_bar() +
-  scale_fill_manual(
-    values = c("#66C2A5", "#8DA0CB","#FC8D62"),
-    labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
   ) +
-  labs(title = "Fruit and Diabetes status",
-       x = "Level of fruit consumption", 
-       y = "count", 
-       fill = "Diabetes status")
+  labs(title = "Fruit and Diabetes status", x = "Level of fruit consumption", y = "count", fill = "Diabetes status")
 
        
 health_data %>% ggplot(aes(x = Veggies, fill = Diabetes_012)) +
   geom_bar() +
-  scale_fill_manual(
-    values = c("#66C2A5", "#8DA0CB","#FC8D62"),
-    labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"),labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
   ) +
-  labs(title = "Vegetables and Diabetes status",
-       x = "Level of veggie consumption", 
-       y = "count", 
-       fill = "Diabetes status")
+  labs(title = "Vegetables and Diabetes status", x = "Level of veggie consumption", y = "count", fill = "Diabetes status")
 ```
+
+We can see from looking at those plots that visualizing the difference in proportions is difficult. After making this observation, we decided to go with a percent stacked bar chart to better visualize the difference in proportions. Those percent stacked bar charts are below.
+
+```{r, fig.show='hold', out.width="50%"}
+health_data %>% ggplot(aes(x = Fruits, fill = Diabetes_012)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  ) +
+  labs(title = "Fruit and Diabetes status", x = "Level of fruit consumption", y = "percentage", fill = "Diabetes status")
+
+       
+health_data %>% ggplot(aes(x = Veggies, fill = Diabetes_012)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"),labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  ) +
+  labs(title = "Vegetables and Diabetes status", x = "Level of veggie consumption", y = "percentage", fill = "Diabetes status")
+```
+
+This next plot is the combined fruits and vegetables feature compared with diabetes, which we also plotted as a percent stacked bar chart.
+
+```{r}
+health_data %>% ggplot(aes(x = Fruits_and_Veggies, fill = Diabetes_012)) +
+  geom_bar(position = "fill") +
+  scale_y_continuous(labels = scales::comma) +
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" =  "Prediabetic", "2" = "Diabetic")) +
+  labs(title = "Fruit & Veggies vs Diabetes status", x = "Level of fruit and veggie consumption", y = "percentage", fill = "Diabetes status")
+```
+
+With the percent stacked bar charts we can see much clearer that for both the fruit and vegetable plot the proportion of those with diabetes is lower for those that do incorporate fruits and vegetables into their diet compared to those that do not. Similarly, we see in the combined fruits and vegetables plot that the rate of diabetes is lower for those that consume both fruits and veggies on a daily basis than for those that include only fruits or only veggies on a daily basis. Therefore, a combination of fruits and vegetables in the diet is associated with a lower rate of diabetes.
+
+Next we wanted to look at the relationship between physical activity and diabetes, which we can see in the next plot.
+
+```{r}
+health_data %>% ggplot(aes(PhysActivity, fill = Diabetes_012)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  ) +
+  labs(title = "Physical activity and Diabetes status", x = "Physical activity level", y = "count", fill = "Diabetes status")
+```
+
+
+
+
+
+
+
+
+
+
+
+
