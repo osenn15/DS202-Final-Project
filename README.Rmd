@@ -19,7 +19,7 @@ The data set we are using was previously cleaned by Alex Teboul on Kaggle with t
 
 All of the categorical variables were of numeric type, so we changed them all to be factors. In addition, we wanted to combine the Fruits and Veggies column so that we could look at one variable that reflected diet. We called this column Fruits_and_Veggies and gave it 3 levels, 2 for an individual that said they eat both fruits and vegetables, 1 for an individual that eats either fruits or vegetables but not both, and 0 for someone that says they eat neither. The code for those modifications is below.
 
-```{r, warning = FALSE}
+```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 
 health_data <- read.csv("HealthFactor.csv")
