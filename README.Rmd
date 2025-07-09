@@ -129,7 +129,7 @@ For this question we wanted to look at how diet and physical activity affect the
 
 This first graphic is a look at basic fruit consumption and diabetes as well basic vegetable consumption and diabetes
 
-```{r}
+```{r, figures-side, fig.show='hold', out.width="50%"}
 health_data %>% ggplot(aes(x = Fruits, fill = Diabetes_012)) +
   geom_bar() +
   scale_fill_manual(
