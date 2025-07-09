@@ -111,3 +111,42 @@ health_data <- health_data %>% mutate(
 -   Is there a relationship between heart disease/attack or stroke and diabetes? Does this differ between men and women?
 -   How do physical activity and diet (eating fruits and vegetables) affect the likelihood of getting diabetes? Is one significantly more influential than the other?
 -   What is the relationship between mental health and diabetes? Is poor mental health associated with poor physical activity levels and/or diet which in turn affects the occurrence of diabetes?
+
+## Results
+
+```{r}
+health_data <- read.csv("HealthFactor.csv")
+library(tidyverse)
+library(ggplot2)
+```
+
+#### How do physical activity and diet (eating fruits and vegetables) affect the likelihood of getting diabetes? Is one significantly more influential than the other?
+
+For this question we wanted to look at how diet and physical activity affect the rates of diabetes and whether prioritizing one over the other leads to different chances of getting diabetes. In this survey the only features that pertain to diet are the variables Fruits and Veggies. Recall from the description of these variables that they are both categorical with 0 indicating no fruits or vegetables eaten during the day and 1 indicating fruit or vegetable consumption one or more times per day. As stated in the data cleaning section, we thought it would be interesting to combine these two variables so we could easily compare those who eat both fruits and vegetables at least once per day to those that only prioritize eating one as well as those who eat neither fruits nor vegetables. The details of how we defined this variable are in the data cleaning section. When diet is mentioned we are referring to the variable Fruits_and_Vegetables.
+
+This first graphic is a look at basic fruit consumption and diabetes as well basic vegetable consumption and diabetes
+
+```{r}
+health_data %>% ggplot(aes(x = Fruits, fill = Diabetes_012)) +
+  geom_bar() +
+  scale_fill_manual(
+    values = c("#66C2A5", "#8DA0CB","#FC8D62"),
+    labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  ) +
+  labs(title = "Fruit and Diabetes status",
+       x = "Level of fruit consumption", 
+       y = "count", 
+       fill = "Diabetes status")
+
+       
+health_data %>% ggplot(aes(x = Veggies, fill = Diabetes_012)) +
+  geom_bar() +
+  scale_fill_manual(
+    values = c("#66C2A5", "#8DA0CB","#FC8D62"),
+    labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  ) +
+  labs(title = "Vegetables and Diabetes status",
+       x = "Level of veggie consumption", 
+       y = "count", 
+       fill = "Diabetes status")
+```
