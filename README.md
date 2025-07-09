@@ -17,7 +17,7 @@ All of the categorical variables were of numeric type, so we changed them all to
 ```{r}
 library(tidyverse)
 
-health_data <- read.csv("C:\\Users\\rosee\\OneDrive\\Documents\\Iowa State\\DS 2020\\final project\\DS202-Final-Project\\HealthFactor.csv")
+health_data <- read.csv("HealthFactor.csv")
 
 #make categorical variables of type factor
 health_data <- health_data %>% 
