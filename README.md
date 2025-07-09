@@ -1,5 +1,3 @@
-README
-================
 
 # Impact of Health Factors on Diabetes
 
