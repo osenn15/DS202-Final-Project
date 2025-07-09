@@ -115,8 +115,6 @@ health_data <- health_data %>% mutate(
 ## Results
 
 ```{r}
-health_data <- read.csv("HealthFactor.csv")
-library(tidyverse)
 library(ggplot2)
 ```
 
