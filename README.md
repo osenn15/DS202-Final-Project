@@ -349,3 +349,44 @@ health_data %>% ggplot(aes(PhysActivity, fill = Diabetes_012)) +
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+compared to the diet variables. While there was a noticeable decline in
+the proportion of those with diabetes when looking at those that eat
+fruit and/or vegetables compared with those who don’t, we can see from
+the plot that there is a much more noticeable difference in the
+proportion of those with diabetes between the two physical activity
+groups. This suggests that physical activity could potentially have a
+bigger impact on diabetes than diet does. The next graph looks at how
+diet and physical activity affect each other and their relationship
+together with diabetes status.
+
+``` r
+health_data %>% mutate(
+  Fruits_and_Veggies = factor(Fruits_and_Veggies, levels = c(0, 1, 2), labels = c("none", "fruits or veggies", "fruits and veggies"))
+) %>% ggplot(aes(x = PhysActivity, fill = Diabetes_012)) +
+  facet_wrap(~ Fruits_and_Veggies) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(
+    values = c("#66C2A5", "#8DA0CB","#FC8D62"),
+    labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  ) +
+  labs(title = "Diet, Physical Activity and Diabetes status",
+       x = "Physical activity level", 
+       y = "Percentage", 
+       fill = "Diabetes status")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+Here we can see that even for those with a poor diet (eating neither
+fruits nor vegetables) including physical activity into their lifestyle
+could significantly decrease their chances of developing diabetes. Not
+surprisingly, the category with the lowest proportion of diabetics are
+those that incorporate fruits and vegetables into their diet regularly
+and are physically active.
+
+While this is true, it seems that the dominating factor here that
+influences the development of diabetes is whether or not one is
+physically active. Diet definitely plays a role in this based on the
+first graphs we looked at, but physical activity seems to be more
+influential.
