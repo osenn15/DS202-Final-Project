@@ -14,10 +14,11 @@ this disease.
 
 It is important to note that while the survey does not differentiate
 between type 1 and type 2 diabetes the vast majority of diabetes cases
-are type 2. According to the CDC “More than 38 million Americans have
-diabetes (about 1 in 10), and about 90% to 95% of them have type 2
-diabetes.” While it is possible to have a genetic predisposition to
-diabetes, type 2 is usually preventable through lifestyle choices.
+are type 2. According to the Centers for Disease Control and Prevention,
+“More than 38 million Americans have diabetes (about 1 in 10), and about
+90% to 95% of them have type 2 diabetes.” While it is possible to have a
+genetic predisposition to diabetes, type 2 is usually preventable
+through lifestyle choices.
 
 #### Questions to be addressed
 
@@ -370,11 +371,11 @@ compared to the diet variables. While there was a noticeable decline in
 the proportion of those with diabetes when looking at those that eat
 fruit and/or vegetables compared with those who don’t, we can see from
 the plot that there is a much more noticeable difference in the
-proportion of those with diabetes between the two physical activity
-groups. This suggests that physical activity could potentially have a
-bigger impact on diabetes than diet does. The next graph looks at how
-diet and physical activity affect each other and their relationship
-together with diabetes status.
+proportion of those with diabetes between those who are physically
+active and those who are not. This suggests that physical activity could
+potentially have a bigger impact on diabetes than diet does. The next
+graph looks at the relationship between diet, physical activity and
+diabetes together.
 
 ``` r
 health_data %>% mutate(
@@ -382,14 +383,9 @@ health_data %>% mutate(
 ) %>% ggplot(aes(x = PhysActivity, fill = Diabetes_012)) +
   facet_wrap(~ Fruits_and_Veggies) +
   geom_bar(position = "fill") +
-  scale_fill_manual(
-    values = c("#66C2A5", "#8DA0CB","#FC8D62"),
-    labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"),labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
   ) +
-  labs(title = "Diet, Physical Activity and Diabetes status",
-       x = "Physical activity level", 
-       y = "Percentage", 
-       fill = "Diabetes status")
+  labs(title = "Diet, Physical Activity and Diabetes status", x = "Physical activity level", y = "Percentage", fill = "Diabetes status")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
@@ -397,12 +393,82 @@ health_data %>% mutate(
 Here we can see that even for those with a poor diet (eating neither
 fruits nor vegetables) including physical activity into their lifestyle
 could significantly decrease their chances of developing diabetes. Not
-surprisingly, the category with the lowest proportion of diabetics are
-those that incorporate fruits and vegetables into their diet regularly
-and are physically active.
+surprisingly, the category with the lowest proportion of diabetics is
+the category that both incorporates fruits and vegetables into their
+diet regularly and are physically active.
 
-While this is true, it seems that the dominating factor here that
-influences the development of diabetes is whether or not one is
-physically active. Diet definitely plays a role in this based on the
-first graphs we looked at, but physical activity seems to be more
-influential.
+While it is true that those with a good diet who are physically active
+have the lowest rates of diabetes, it seems that the dominating factor
+here is physical activity. Diet definitely plays a role in this based on
+the first graphs we looked at, but physical activity seems to have a
+slightly more noticeable affect.
+
+#### What is the relationship between mental health and diabetes? Is poor mental health associated with poor physical activity levels and/or diet which in turn affects the occurrence of diabetes?
+
+To answer this question we first looked at the relationship between
+mental health and diabetes with a histogram and a box plot. When we
+first made these visualizations we saw that an overwhelming number of
+respondents said they had zero days of poor mental health in the past
+month. This made it difficult to read and interpret the rest of the
+data. We made the decision to exclude those who had zero days of poor
+mental health from these visualizations so that we were only looking at
+the set of people from the survey who had experienced some amount of
+poor mental health. For the remainder of exploration for this question
+we will only be looking at those with at least one day of poor mental
+health. Below are the first two plots.
+
+``` r
+health_data %>% filter(
+  MentHlth != 0
+) %>% ggplot(aes(x = MentHlth, fill = Diabetes_012)) +
+  geom_histogram(color = "black") +
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  ) +
+  labs(title = "Days of Poor Mental Health and Diabetes Level",x = "Num days poor mental health in last 30 days", y = "count", fill = "Diabetes status")
+
+
+health_data %>% filter(
+  MentHlth != 0
+) %>% 
+  ggplot(aes(x = Diabetes_012, y = MentHlth, fill = Diabetes_012)) +
+  geom_boxplot(staplewidth = 1) +
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  ) +
+  labs(title = "Days of Poor Mental Health and Diabetes Level", x = "Diabetes level", y = "Num days poor mental health in last 30 days", fill = "Diabetes status")
+```
+
+<img src="README_files/figure-gfm/unnamed-chunk-10-1.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-10-2.png" width="50%" />
+
+Some interesting observations can be made from these plots. In the
+histogram we can see that there is a spike of responses at about five or
+less days of poor mental health. after this spike we see the number of
+responses slowly declining as the number of days increases. At 30 days
+however, we see another spike of responses which includes the highest
+count of diabetes across all days in the graph. The boxplot shows
+something very similar. Those without diabetes have the lowest median
+for number of poor mental health days, those who are prediabetic tended
+to report a higher number of days and have a higher median, and finally,
+those who are diabetic tended to report the highest number of poor
+mental health days and have the highest median.
+
+These plots suggest that there is a relationship between mental health
+and diabetes. However, they may not be directly related. Something else
+we wanted to explore in this question was whether or not mental health
+was related to some other factors that in turn would cause diabetes. In
+this next plot we look at the relationship between mental health and
+diet to see if diet could possibly be a link between mental health and
+diabetes.
+
+``` r
+health_data %>% filter(
+  MentHlth != 0
+) %>% ggplot(aes(x = MentHlth, fill = Fruits_and_Veggies)) +
+  geom_histogram(color = "black") +
+  scale_fill_manual(values = c("#e78ac3", "#a6d854","#ffd92f"), labels = c("0" = "No Fruits or Veggies", "1" = "Some Fruits or Veggies", "2" = "Both Fruits and Veggies")
+  ) +
+  labs(title = "Days of Poor Mental Health and Diet", x = "Num days poor mental health in last 30 days", y = "count", fill = "Quality of Diet")
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
