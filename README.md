@@ -3,6 +3,28 @@
 
 ## Rose Birkner, Owen Senn
 
+#### Introduction
+
+This project’s goal is to explore and analyze the impact that certain
+health and risk factors have on Diabetes. This topic is of interest
+because diabetes has been a growing problem in the United States for
+years and can be preventable by lifestyle choices. It is important to
+understand what steps individual’s can take mitigate and prevent this
+disease.
+
+#### Questions to be addressed
+
+- How does smoking and alcohol affect an individuals chances to have
+  diabetes? How does this vary by age?
+- Is there a relationship between heart disease/attack or stroke and
+  diabetes? Does this differ between men and women?
+- How do physical activity and diet (eating fruits and vegetables)
+  affect the likelihood of getting diabetes? Is one significantly more
+  influential than the other?
+- What is the relationship between mental health and diabetes? Is poor
+  mental health associated with poor physical activity levels and/or
+  diet which in turn affects the occurrence of diabetes?
+
 #### Data Description
 
 The data set for this project came from kaggle here:
@@ -186,19 +208,6 @@ health_data <- health_data %>% mutate(
   level. 1 = less than \$10,000, 2 = less than \$15,000, 3 = less than
   \$20,000, 4 = less than \$25,000, 5 = less than \$35,000, 6 = less
   than \$50,000, 7 = less than \$75,000, 8 = \$75,000 or more
-
-#### Questions to be addressed
-
-- How does smoking and alcohol affect an individuals chances to have
-  diabetes? How does this vary by age?
-- Is there a relationship between heart disease/attack or stroke and
-  diabetes? Does this differ between men and women?
-- How do physical activity and diet (eating fruits and vegetables)
-  affect the likelihood of getting diabetes? Is one significantly more
-  influential than the other?
-- What is the relationship between mental health and diabetes? Is poor
-  mental health associated with poor physical activity levels and/or
-  diet which in turn affects the occurrence of diabetes?
 
 ## Results
 

@@ -7,6 +7,17 @@ authors: Rose Birkner, Owen Senn
 
 ## Rose Birkner, Owen Senn
 
+#### Introduction
+
+This project's goal is to explore and analyze the impact that certain health and risk factors have on Diabetes. This topic is of interest because diabetes has been a growing problem in the United States for years and can be preventable by lifestyle choices. It is important to understand what steps individual's can take mitigate and prevent this disease. 
+
+#### Questions to be addressed
+
+-   How does smoking and alcohol affect an individuals chances to have diabetes? How does this vary by age?
+-   Is there a relationship between heart disease/attack or stroke and diabetes? Does this differ between men and women?
+-   How do physical activity and diet (eating fruits and vegetables) affect the likelihood of getting diabetes? Is one significantly more influential than the other?
+-   What is the relationship between mental health and diabetes? Is poor mental health associated with poor physical activity levels and/or diet which in turn affects the occurrence of diabetes?
+
 #### Data Description
 
 The data set for this project came from kaggle here: <https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset/data?select=diabetes_012_health_indicators_BRFSS2015.csv>. That is a cleaned version of a data set which came from another kaggle project here: <https://www.kaggle.com/datasets/cdc/behavioral-risk-factor-surveillance-system?select=2015.csv>. This data comes from the Behavioral Risk Factor Surveillance System (BRFSS), an annual phone survey conducted by the CDC. Every year the data is collected from over 400,000 adults across America. The purpose of the survey is to collect information on possible health indicators of several chronic diseases as well as to record general health trends. During the survey, 330 variables are recorded. Among the information gathered is demographics, physical activity level, diet, chronic diseases, and more. Our focus for this project is looking at Diabetes and the related health factors that might indicate the occurrence of it.
@@ -110,13 +121,6 @@ health_data <- health_data %>% mutate(
 
 -   **Income:** categorical variable with 8 levels that indicate income level. 1 = less than \$10,000, 2 = less than \$15,000, 3 = less than \$20,000, 4 = less than \$25,000, 5 = less than \$35,000, 6 = less than \$50,000, 7 = less than \$75,000, 8 = \$75,000 or more
 
-#### Questions to be addressed
-
--   How does smoking and alcohol affect an individuals chances to have diabetes? How does this vary by age?
--   Is there a relationship between heart disease/attack or stroke and diabetes? Does this differ between men and women?
--   How do physical activity and diet (eating fruits and vegetables) affect the likelihood of getting diabetes? Is one significantly more influential than the other?
--   What is the relationship between mental health and diabetes? Is poor mental health associated with poor physical activity levels and/or diet which in turn affects the occurrence of diabetes?
-
 ## Results
 
 ```{r}
@@ -127,7 +131,8 @@ library(ggplot2)
 
 For this question we wanted to observe and analyze how heavy alcohol usage and smoking affect the rate of an individual to be more prone to diabetes. It is important for people to know the affect this has to understand the consequences of smoking and heavy drinking. Recall from the data description that these variables are both categorical. For smoking, 0 indicates an individual has not smoked at least 100 cigarettes in their life and 1 indicates they have. For drinking, 1 indicates a heavy drinker and 0 is not a heavy drinker. Heavy drinker is defined as adult men having more than 14 drinks per week and adult women having more than 7 drinks per week. This analysis will exam each variable on their own along with both at the same time. The variable smoke_and_alcohol represents where individuals are in both categories, and is defined in our data cleaning section.
 
-First, we can grapbhicaly analyze how smoking relates to diabetes. 
+First, we can grapbhicaly analyze how smoking relates to diabetes.
+
 ```{r}
 health_data |> ggplot(aes(x = Smoker, fill = Diabetes_012)) +
   geom_bar(position = "fill") +
@@ -136,9 +141,10 @@ health_data |> ggplot(aes(x = Smoker, fill = Diabetes_012)) +
   labs(title = "Smoker Status", x = "Levels of smoking status", y = "count", fill = "Diabetes status")
 ```
 
-From this chart we can see that individuals who smoke are more likely to have diabetes than individuals who do not smoke. This difference is not major, but still important to note and for people to understand. 
+From this chart we can see that individuals who smoke are more likely to have diabetes than individuals who do not smoke. This difference is not major, but still important to note and for people to understand.
 
 Next, we can determine how this varies by age when an individual does smoke. We will provide a broader view, and then observe individuals from the ages of 25-44 to observe middle age people.
+
 ```{r, fig.show='hold'}
 health_data |> 
   ggplot(aes(x = Age, y = Smoker, fill = Diabetes_012, color = Diabetes_012)) + geom_jitter() 
@@ -215,7 +221,6 @@ health_data %>% ggplot(aes(PhysActivity, fill = Diabetes_012)) +
 
 compared to the diet variables. While there was a noticeable decline in the proportion of those with diabetes when looking at those that eat fruit and/or vegetables compared with those who don't, we can see from the plot that there is a much more noticeable difference in the proportion of those with diabetes between the two physical activity groups. This suggests that physical activity could potentially have a bigger impact on diabetes than diet does. The next graph looks at how diet and physical activity affect each other and their relationship together with diabetes status.
 
-
 ```{r}
 health_data %>% mutate(
   Fruits_and_Veggies = factor(Fruits_and_Veggies, levels = c(0, 1, 2), labels = c("none", "fruits or veggies", "fruits and veggies"))
@@ -235,10 +240,3 @@ health_data %>% mutate(
 Here we can see that even for those with a poor diet (eating neither fruits nor vegetables) including physical activity into their lifestyle could significantly decrease their chances of developing diabetes. Not surprisingly, the category with the lowest proportion of diabetics are those that incorporate fruits and vegetables into their diet regularly and are physically active.
 
 While this is true, it seems that the dominating factor here that influences the development of diabetes is whether or not one is physically active. Diet definitely plays a role in this based on the first graphs we looked at, but physical activity seems to be more influential.
-
-
-
-
-
-
-
