@@ -190,7 +190,7 @@ health_data <- health_data %>% mutate(
 #### Questions to be addressed
 
 - How does smoking and alcohol affect an individuals chances to have
-  diabetes?
+  diabetes? How does this vary by age?
 - Is there a relationship between heart disease/attack or stroke and
   diabetes? Does this differ between men and women?
 - How do physical activity and diet (eating fruits and vegetables)
@@ -205,6 +205,56 @@ health_data <- health_data %>% mutate(
 ``` r
 library(ggplot2)
 ```
+
+\####How does smoking and alcohol affect an individuals chances to have
+diabetes?
+
+For this question we wanted to observe and analyze how heavy alcohol
+usage and smoking affect the rate of an individual to be more prone to
+diabetes. It is important for people to know the affect this has to
+understand the consequences of smoking and heavy drinking. Recall from
+the data description that these variables are both categorical. For
+smoking, 0 indicates an individual has not smoked at least 100
+cigarettes in their life and 1 indicates they have. For drinking, 1
+indicates a heavy drinker and 0 is not a heavy drinker. Heavy drinker is
+defined as adult men having more than 14 drinks per week and adult women
+having more than 7 drinks per week. This analysis will exam each
+variable on their own along with both at the same time. The variable
+smoke_and_alcohol represents where individuals are in both categories,
+and is defined in our data cleaning section.
+
+First, we can grapbhicaly analyze how smoking relates to diabetes.
+
+``` r
+health_data |> ggplot(aes(x = Smoker, fill = Diabetes_012)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  ) +
+  labs(title = "Smoker Status", x = "Levels of smoking status", y = "count", fill = "Diabetes status")
+```
+
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+From this chart we can see that individuals who smoke are more likely to
+have diabetes than individuals who do not smoke. This difference is not
+major, but still important to note and for people to understand.
+
+Next, we can determine how this varies by age when an individual does
+smoke. We will provide a broader view, and then observe individuals from
+the ages of 25-44 to observe middle age people.
+
+``` r
+health_data |> 
+  ggplot(aes(x = Age, y = Smoker, fill = Diabetes_012, color = Diabetes_012)) + geom_jitter() 
+
+health_data |> 
+  filter(
+    Age == 2:5
+  ) |>
+  ggplot(aes(x = Age, y = Smoker, fill = Diabetes_012, color = Diabetes_012)) + geom_jitter() 
+```
+
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)![](README_files/figure-gfm/unnamed-chunk-4-2.png)
 
 #### How do physical activity and diet (eating fruits and vegetables) affect the likelihood of getting diabetes? Is one significantly more influential than the other?
 
@@ -241,7 +291,7 @@ health_data %>% ggplot(aes(x = Veggies, fill = Diabetes_012)) +
   labs(title = "Vegetables and Diabetes status", x = "Level of veggie consumption", y = "count", fill = "Diabetes status")
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-3-1.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-3-2.png" width="50%" />
+<img src="README_files/figure-gfm/unnamed-chunk-5-1.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-5-2.png" width="50%" />
 
 We can see from looking at those plots that visualizing the difference
 in proportions is difficult. After making this observation, we decided
@@ -263,7 +313,7 @@ health_data %>% ggplot(aes(x = Veggies, fill = Diabetes_012)) +
   labs(title = "Vegetables and Diabetes status", x = "Level of veggie consumption", y = "percentage", fill = "Diabetes status")
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-4-1.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-4-2.png" width="50%" />
+<img src="README_files/figure-gfm/unnamed-chunk-6-1.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-6-2.png" width="50%" />
 
 This next plot is the combined fruits and vegetables feature compared
 with diabetes, which we also plotted as a percent stacked bar chart.
@@ -276,7 +326,7 @@ health_data %>% ggplot(aes(x = Fruits_and_Veggies, fill = Diabetes_012)) +
   labs(title = "Fruit & Veggies vs Diabetes status", x = "Level of fruit and veggie consumption", y = "percentage", fill = "Diabetes status")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 With the percent stacked bar charts we can see much clearer that for
 both the fruit and vegetable plot the proportion of those with diabetes
@@ -299,4 +349,4 @@ health_data %>% ggplot(aes(PhysActivity, fill = Diabetes_012)) +
   labs(title = "Physical activity and Diabetes status", x = "Physical activity level", y = "count", fill = "Diabetes status")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
