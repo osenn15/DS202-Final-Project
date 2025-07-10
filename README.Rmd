@@ -9,7 +9,9 @@ authors: Rose Birkner, Owen Senn
 
 #### Introduction
 
-This project's goal is to explore and analyze the impact that certain health and risk factors have on Diabetes. This topic is of interest because diabetes has been a growing problem in the United States for years and can be preventable by lifestyle choices. It is important to understand what steps individual's can take mitigate and prevent this disease. 
+This project's goal is to explore and analyze the impact that certain health and risk factors have on Diabetes. This topic is of interest because diabetes has been a growing problem in the United States for years and can usually be prevented by lifestyle choices. It is important to understand what steps individual's can take to mitigate and prevent this disease.
+
+It is important to note that while the survey does not differentiate between type 1 and type 2 diabetes the vast majority of diabetes cases are type 2. According to the CDC "More than 38 million Americans have diabetes (about 1 in 10), and about 90% to 95% of them have type 2 diabetes." While it is possible to have a genetic predisposition to diabetes, type 2 is usually preventable through lifestyle choices.
 
 #### Questions to be addressed
 
