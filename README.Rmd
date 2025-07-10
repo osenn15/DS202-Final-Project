@@ -123,7 +123,7 @@ health_data <- health_data %>% mutate(
 library(ggplot2)
 ```
 
-####How does smoking and alcohol affect an individuals chances to have diabetes?
+#### How does smoking and alcohol affect an individuals chances to have diabetes?
 
 For this question we wanted to observe and analyze how heavy alcohol usage and smoking affect the rate of an individual to be more prone to diabetes. It is important for people to know the affect this has to understand the consequences of smoking and heavy drinking. Recall from the data description that these variables are both categorical. For smoking, 0 indicates an individual has not smoked at least 100 cigarettes in their life and 1 indicates they have. For drinking, 1 indicates a heavy drinker and 0 is not a heavy drinker. Heavy drinker is defined as adult men having more than 14 drinks per week and adult women having more than 7 drinks per week. This analysis will exam each variable on their own along with both at the same time. The variable smoke_and_alcohol represents where individuals are in both categories, and is defined in our data cleaning section.
 

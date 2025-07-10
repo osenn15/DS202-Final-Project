@@ -206,8 +206,7 @@ health_data <- health_data %>% mutate(
 library(ggplot2)
 ```
 
-\####How does smoking and alcohol affect an individuals chances to have
-diabetes?
+#### How does smoking and alcohol affect an individuals chances to have diabetes?
 
 For this question we wanted to observe and analyze how heavy alcohol
 usage and smoking affect the rate of an individual to be more prone to
