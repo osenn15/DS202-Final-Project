@@ -636,3 +636,19 @@ mental health and physical activity level. Like we concluded from the
 last plots when considering diet, the connection between mental health
 and physical activity level could be another reason why poor mental
 health is associated with higher rates of diabetes.
+
+#### Conclusion
+
+This project’s goal was to analyze different health and lifestyle
+factors that could potentially influence the development of diabetes.
+Health factors that we found associated with diabetes was high blood
+pressure and a higher BMI. Lifestyle factors that we found associated
+with diabetes are a poor diet(lack of fruit and vegetables) as well as a
+lack of physical activity. Not surprisingly, the combination of physical
+activity and a good diet showed a low rate of diabetes. It is important
+that people are aware of this as they are lifestyle choices that they
+can control. We also found that poor mental health was associated with
+diabetes, and this can be due to the connection between mental health,
+diet, and physical activity. One alarming thing we found was that people
+with diabetes are much more likely to have a stroke or heart problems,
+even at a young age.
