@@ -15,8 +15,8 @@ It is important to note that while the survey does not differentiate between typ
 
 #### Questions to be addressed
 
--   How do health factors such as blood pressure, cholesterol levels, and BMI affect an individuals chances of getting diabetes? 
--   Is there a relationship between heart disease/attack or stroke and diabetes? Does this differ between men and women?
+-   How do health factors such as blood pressure and BMI affect an individuals chances of getting diabetes? 
+-   Does having diabetes put an individual at risk for having a stroke or heart disease/attack?
 -   How do physical activity and diet (eating fruits and vegetables) affect the likelihood of getting diabetes? Is one significantly more influential than the other?
 -   What is the relationship between mental health and diabetes? Is poor mental health associated with poor physical activity levels and/or diet which in turn affects the occurrence of diabetes?
 
@@ -129,9 +129,9 @@ health_data <- health_data %>% mutate(
 library(ggplot2)
 ```
 
-#### How do health factors such as blood pressure, cholesterol levels, and BMI affect an individuals chances of getting diabetes? 
+#### How do health factors such as blood pressure and BMI affect an individuals chances of getting diabetes? 
 
-For this question we wanted to observe and analyze how health factors such as blood pressure and BMI affect the chance of an individual to have diabetes. This analysis is important to understand the benefit of living a healthy lifestyle and the consequences that may come if not. While there are some instances blood pressure levels can be uncontrollable, most people can mitigate and control their blood pressure and BMI by living a healthy lifestyle. As a reminder, blood pressure is a categorical variable where 0 indicates no high blood pressure and 1 indicates that an individual has been told they have high blood pressure by a doctor, nurse, or other health professional. BMI is a numerical variable that represents a person's body mass index. This analysis will exam each variable on their own. 
+For this question, we wanted to observe and analyze how health factors such as blood pressure and BMI affect the chance of an individual having diabetes. This analysis is important to understand the benefits of living a healthy lifestyle and the consequences that may come if not. While there are some instances where blood pressure levels can be uncontrollable, most people can mitigate and control their blood pressure and BMI by living a healthy lifestyle. As a reminder, blood pressure is a categorical variable where 0 indicates no high blood pressure and 1 indicates that an individual has been told they have high blood pressure by a doctor, nurse, or other health professional. BMI is a numerical variable that represents a person's body mass index. This analysis will exam each variable on its own. 
 
 First, we can graphically analyze how blood pressure relates to diabetes.
 
@@ -143,7 +143,7 @@ health_data |> ggplot(aes(x = HighBP, fill = Diabetes_012)) +
   labs(title = "Blood Pressure Evaluation", x = "Levels of blood pressure", y = "count", fill = "Diabetes status")
 ```
 
-From this chart we can see that individuals who have high blood pressure are way more likely to have diabetes than individuals who do not have high blood pressure. This difference is major, and important to note and for people to understand. 
+From this chart, we can see that individuals who have high blood pressure are way more likely to have diabetes than individuals who do not have high blood pressure. This difference is major and important to note and for people to understand. 
 
 Next, we can examine the more controllable of the two variables BMI.
 
@@ -154,23 +154,68 @@ health_data |>
 geom_boxplot()
   
 ```
-From this chart we can see that individuals who have a higher BMI are at risk for diabetes. Due to this finding, it is important that people try to remain healthy to protect themselves from a higher BMI or high blood pressure which can result in diabetes and many other chronic diseases. 
+From this chart, we can see that individuals who have a higher BMI are at risk for diabetes. Due to this finding, it is important that people try to remain healthy to protect themselves from a higher BMI or high blood pressure, which can result in diabetes and many other chronic diseases. 
 
 Due to BMI being a controllable variable, what can people do to improve it?
 ```{r, fig.show='hold', out.width="50%"}
 health_data |>
-  ggplot(aes(x = PhysActivity, y = BMI, fill = PhysActivity)) + geom_boxplot(outliers = FALSE) + scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Active", "1" = "Active")) + labs(title = "BMI and Physical Activity Evaluation", x = "Physical Activity levels", y = "BMI", fill = "Activity status")
+  ggplot(aes(x = PhysActivity, y = BMI, fill = PhysActivity)) + geom_boxplot(outliers = FALSE) + scale_fill_manual(values = c("#66C2A5", "#8DA0CB"), labels = c("0" = "Not Active", "1" = "Active")) + labs(title = "BMI and Physical Activity Evaluation", x = "Physical Activity levels", y = "BMI", fill = "Activity status")
 
 health_data |>
-  ggplot(aes(x = Fruits, y = BMI, fill = Fruits)) + geom_boxplot(outliers = FALSE) + scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "No Fruits Eaten", "1" = "Fruits Eaten")) +labs(title = "BMI and Fruit Consumption Evaluation", x = "Fruit levels", y = "BMI", fill = "Fruit status")
+  ggplot(aes(x = Fruits, y = BMI, fill = Fruits)) + geom_boxplot(outliers = FALSE) + scale_fill_manual(values = c("#66C2A5", "#8DA0CB"), labels = c("0" = "No Fruits Eaten", "1" = "Fruits Eaten")) +labs(title = "BMI and Fruit Consumption Evaluation", x = "Fruit levels", y = "BMI", fill = "Fruit status")
 
 health_data |>
-  ggplot(aes(x = Veggies, y = BMI, fill = Veggies)) + geom_boxplot(outliers = FALSE) + scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "No Veggies Eaten", "1" = "Veggies Eaten")) +labs(title = "BMI and Veggie Consumption Evaluation", x = "Veggie levels", y = "BMI", fill = "Veggie status")
+  ggplot(aes(x = Veggies, y = BMI, fill = Veggies)) + geom_boxplot(outliers = FALSE) + scale_fill_manual(values = c("#66C2A5", "#8DA0CB"), labels = c("0" = "No Veggies Eaten", "1" = "Veggies Eaten")) +labs(title = "BMI and Veggie Consumption Evaluation", x = "Veggie levels", y = "BMI", fill = "Veggie status")
 
-health_data |>
-  ggplot(aes(x = HvyAlcoholConsump, y = BMI, fill = HvyAlcoholConsump)) + geom_boxplot(outliers = FALSE) + scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Heavy Alcohol Consumption", "1" = "Not Heavy Alcohol Consumption", "2" = "Diabetic")) +labs(title = "BMI and Alcohol Consumption Evaluation", x = "Alcohol levels", y = "BMI", fill = "Diabetes status")
+
 ```
-These charts show that your BMI will decrease by being more active, eating healthier, and decreasing alcohol use. By doing these things, people will become healthier which leads them to be much less likely prone to diabetes. By being heather, blood pressure will also decrease which also impacts diabetes. This is a specific and actionable plan that people can take to make sure they are protecting themselves against chronic diseases such as diabetes. 
+These charts show that your BMI will decrease by being more active and eating healthier. By doing these things, people will become healthier, which will lead them to be less prone to diabetes. By being healthier, blood pressure will also decrease, which also impacts diabetes. This is a specific and actionable plan that people can take to make sure they are protecting themselves against chronic diseases such as diabetes. 
+
+#### Does having diabetes put an individual at risk for having a stroke or heart disease/attack?
+
+While this project has examined how certain variables impact diabetes, it is also important to understand how having diabetes can impact your health. This question will explore whether diabetes puts a person at higher risk for a stroke or heart disease/attack. This is very important as these things can be life-threatening, which makes this issue of diabetes even more serious. The variable stroke is a categorical variable where 0 indicates no stroke for an individual and 1 indicates they have been told they had a stroke. The variable HeartDiseaseorAttack is also a categorical variable where 0 indicates respondents who have never reported having coronary heart disease (CHD) or myocardial infarction (MI) and 1 indicates they have. These variables will be analyzed on their own and also compared with age.
+
+The variable stroke will first be analyzed.
+```{r}
+health_data |> ggplot(aes(x = Stroke, fill = Diabetes_012)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  ) +
+  labs(title = "Stroke Evaluation", x = "Levels of Stroke", y = "count", fill = "Diabetes status")
+```
+As seen in this chart, the risk of getting a stroke while having diabetes is much higher. This is a very scary but also important insight, as it provides individuals' motivation to stay healthy and to be aware of the effects of diabetes. 
+
+How does this vary by age?
+```{r}
+health_data |> ggplot(aes(x = Stroke, fill = Diabetes_012)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  ) +
+  labs(title = "Stroke Evaluation by Age", x = "Levels of Stroke", y = "count", fill = "Diabetes status") + facet_wrap(~Age)
+```
+This idea that diabetes puts you at risk for a stroke remains consistent throughout each age group, along with some other alarming statistics. Individuals in their late teens and early twenties who would never have to worry about having a stroke because of their age now have to be aware that this is a possibility due to diabetes. 
+
+The variable regarding heart disease will be analyzed next. 
+```{r}
+health_data |> ggplot(aes(x = HeartDiseaseorAttack, fill = Diabetes_012)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  ) +
+  labs(title = "Heart Disease/Attack Evaluation", x = "Levels of Heart Disease/Attack", y = "count", fill = "Diabetes status")
+```
+As seen in this chart, the risk of having a heart attack or heart disease while having diabetes is much higher and similar to that of a stroke. Again, this is a very scary but also important insight.
+
+How does this vary by age?
+```{r}
+health_data |> ggplot(aes(x = HeartDiseaseorAttack, fill = Diabetes_012)) +
+  geom_bar(position = "fill") +
+  scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
+  ) +
+  labs(title = "Heart Disease/Attack Evaluation by Age", x = "Levels of Heart Disease/Attack", y = "count", fill = "Diabetes status") + facet_wrap(~Age)
+```
+Similar to the stroke graphs, the idea that diabetes has an impact on heart disease/attacks can be seen in every age group. Also, note that younger individuals are at risk, which is typically unheard of at this age.  
+
+Diabetes is a very serious disease, and individuals need to be aware of the health risks it can bring in order to stay healthy. Being healthy is the most important thing to help prevent this disease and the risks that are associated with it. 
 
 #### How do physical activity and diet (eating fruits and vegetables) affect the likelihood of getting diabetes? Is one significantly more influential than the other?
 
