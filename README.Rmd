@@ -170,7 +170,7 @@ health_data |>
 health_data |>
   ggplot(aes(x = HvyAlcoholConsump, y = BMI, fill = HvyAlcoholConsump)) + geom_boxplot(outliers = FALSE) + scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Heavy Alcohol Consumption", "1" = "Not Heavy Alcohol Consumption", "2" = "Diabetic")) +labs(title = "BMI and Alcohol Consumption Evaluation", x = "Alcohol levels", y = "BMI", fill = "Diabetes status")
 ```
-These charts show that your BMI will decrease by being more active, eating healthier, and decreasing alcohol use. By doing these things, people will become healthier which leads them to be much less likely prone to diabetes. By being heather, blood pressure will also decrease which also impacts diabetes. This is a specific and actionable plan that people can take to make sure they are protectcing themselves against chronic diseases such as diabetes. 
+These charts show that your BMI will decrease by being more active, eating healthier, and decreasing alcohol use. By doing these things, people will become healthier which leads them to be much less likely prone to diabetes. By being heather, blood pressure will also decrease which also impacts diabetes. This is a specific and actionable plan that people can take to make sure they are protecting themselves against chronic diseases such as diabetes. 
 
 #### How do physical activity and diet (eating fruits and vegetables) affect the likelihood of getting diabetes? Is one significantly more influential than the other?
 

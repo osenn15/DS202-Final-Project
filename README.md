@@ -301,7 +301,7 @@ eating healthier, and decreasing alcohol use. By doing these things,
 people will become healthier which leads them to be much less likely
 prone to diabetes. By being heather, blood pressure will also decrease
 which also impacts diabetes. This is a specific and actionable plan that
-people can take to make sure they are protectcing themselves against
+people can take to make sure they are protecting themselves against
 chronic diseases such as diabetes.
 
 #### How do physical activity and diet (eating fruits and vegetables) affect the likelihood of getting diabetes? Is one significantly more influential than the other?
