@@ -22,8 +22,8 @@ through lifestyle choices.
 
 #### Questions to be addressed
 
-- How does smoking and alcohol affect an individuals chances to have
-  diabetes? How does this vary by age?
+- How do health factors such as blood pressure, cholesterol levels, and
+  BMI affect an individuals chances of getting diabetes?
 - Is there a relationship between heart disease/attack or stroke and
   diabetes? Does this differ between men and women?
 - How do physical activity and diet (eating fruits and vegetables)
@@ -223,54 +223,86 @@ health_data <- health_data %>% mutate(
 library(ggplot2)
 ```
 
-#### How does smoking and alcohol affect an individuals chances to have diabetes?
+#### How do health factors such as blood pressure, cholesterol levels, and BMI affect an individuals chances of getting diabetes?
 
-For this question we wanted to observe and analyze how heavy alcohol
-usage and smoking affect the rate of an individual to be more prone to
-diabetes. It is important for people to know the affect this has to
-understand the consequences of smoking and heavy drinking. Recall from
-the data description that these variables are both categorical. For
-smoking, 0 indicates an individual has not smoked at least 100
-cigarettes in their life and 1 indicates they have. For drinking, 1
-indicates a heavy drinker and 0 is not a heavy drinker. Heavy drinker is
-defined as adult men having more than 14 drinks per week and adult women
-having more than 7 drinks per week. This analysis will exam each
-variable on their own along with both at the same time. The variable
-smoke_and_alcohol represents where individuals are in both categories,
-and is defined in our data cleaning section.
+For this question we wanted to observe and analyze how health factors
+such as blood pressure and BMI affect the chance of an individual to
+have diabetes. This analysis is important to understand the benefit of
+living a healthy lifestyle and the consequences that may come if not.
+While there are some instances blood pressure levels can be
+uncontrollable, most people can mitigate and control their blood
+pressure and BMI by living a healthy lifestyle. As a reminder, blood
+pressure is a categorical variable where 0 indicates no high blood
+pressure and 1 indicates that an individual has been told they have high
+blood pressure by a doctor, nurse, or other health professional. BMI is
+a numerical variable that represents a person’s body mass index. This
+analysis will exam each variable on their own.
 
-First, we can grapbhicaly analyze how smoking relates to diabetes.
+First, we can graphically analyze how blood pressure relates to
+diabetes.
 
 ``` r
-health_data |> ggplot(aes(x = Smoker, fill = Diabetes_012)) +
+health_data |> ggplot(aes(x = HighBP, fill = Diabetes_012)) +
   geom_bar(position = "fill") +
   scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
   ) +
-  labs(title = "Smoker Status", x = "Levels of smoking status", y = "count", fill = "Diabetes status")
+  labs(title = "Blood Pressure Evaluation", x = "Levels of blood pressure", y = "count", fill = "Diabetes status")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-From this chart we can see that individuals who smoke are more likely to
-have diabetes than individuals who do not smoke. This difference is not
-major, but still important to note and for people to understand.
+From this chart we can see that individuals who have high blood pressure
+are way more likely to have diabetes than individuals who do not have
+high blood pressure. This difference is major, and important to note and
+for people to understand.
 
-Next, we can determine how this varies by age when an individual does
-smoke. We will provide a broader view, and then observe individuals from
-the ages of 25-44 to observe middle age people.
+Next, we can examine the more controllable of the two variables BMI.
 
 ``` r
-health_data |> 
-  ggplot(aes(x = Age, y = Smoker, fill = Diabetes_012, color = Diabetes_012)) + geom_jitter() 
-
-health_data |> 
-  filter(
-    Age == 2:5
-  ) |>
-  ggplot(aes(x = Age, y = Smoker, fill = Diabetes_012, color = Diabetes_012)) + geom_jitter() 
+health_data |>
+  ggplot(aes(x = Diabetes_012, y = BMI, fill = Diabetes_012)) + geom_boxplot(outliers = FALSE) + scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")) +labs(title = "BMI Evaluation", x = "Diabetes levels", y = "BMI", fill = "Diabetes status")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)![](README_files/figure-gfm/unnamed-chunk-4-2.png)
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+``` r
+geom_boxplot()
+```
+
+    ## geom_boxplot: outliers = TRUE, outlier.colour = NULL, outlier.fill = NULL, outlier.shape = 19, outlier.size = 1.5, outlier.stroke = 0.5, outlier.alpha = NULL, notch = FALSE, notchwidth = 0.5, staplewidth = 0, varwidth = FALSE, na.rm = FALSE, orientation = NA
+    ## stat_boxplot: na.rm = FALSE, orientation = NA
+    ## position_dodge2
+
+From this chart we can see that individuals who have a higher BMI are at
+risk for diabetes. Due to this finding, it is important that people try
+to remain healthy to protect themselves from a higher BMI or high blood
+pressure which can result in diabetes and many other chronic diseases.
+
+Due to BMI being a controllable variable, what can people do to improve
+it?
+
+``` r
+health_data |>
+  ggplot(aes(x = PhysActivity, y = BMI, fill = PhysActivity)) + geom_boxplot(outliers = FALSE) + scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Active", "1" = "Active")) + labs(title = "BMI and Physical Activity Evaluation", x = "Physical Activity levels", y = "BMI", fill = "Activity status")
+
+health_data |>
+  ggplot(aes(x = Fruits, y = BMI, fill = Fruits)) + geom_boxplot(outliers = FALSE) + scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "No Fruits Eaten", "1" = "Fruits Eaten")) +labs(title = "BMI and Fruit Consumption Evaluation", x = "Fruit levels", y = "BMI", fill = "Fruit status")
+
+health_data |>
+  ggplot(aes(x = Veggies, y = BMI, fill = Veggies)) + geom_boxplot(outliers = FALSE) + scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "No Veggies Eaten", "1" = "Veggies Eaten")) +labs(title = "BMI and Veggie Consumption Evaluation", x = "Veggie levels", y = "BMI", fill = "Veggie status")
+
+health_data |>
+  ggplot(aes(x = HvyAlcoholConsump, y = BMI, fill = HvyAlcoholConsump)) + geom_boxplot(outliers = FALSE) + scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Heavy Alcohol Consumption", "1" = "Not Heavy Alcohol Consumption", "2" = "Diabetic")) +labs(title = "BMI and Alcohol Consumption Evaluation", x = "Alcohol levels", y = "BMI", fill = "Diabetes status")
+```
+
+<img src="README_files/figure-gfm/unnamed-chunk-5-1.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-5-2.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-5-3.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-5-4.png" width="50%" />
+These charts show that your BMI will decrease by being more active,
+eating healthier, and decreasing alcohol use. By doing these things,
+people will become healthier which leads them to be much less likely
+prone to diabetes. By being heather, blood pressure will also decrease
+which also impacts diabetes. This is a specific and actionable plan that
+people can take to make sure they are protectcing themselves against
+chronic diseases such as diabetes.
 
 #### How do physical activity and diet (eating fruits and vegetables) affect the likelihood of getting diabetes? Is one significantly more influential than the other?
 
@@ -307,7 +339,7 @@ health_data %>% ggplot(aes(x = Veggies, fill = Diabetes_012)) +
   labs(title = "Vegetables and Diabetes status", x = "Level of veggie consumption", y = "count", fill = "Diabetes status")
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-5-1.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-5-2.png" width="50%" />
+<img src="README_files/figure-gfm/unnamed-chunk-6-1.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-6-2.png" width="50%" />
 
 We can see from looking at those plots that visualizing the difference
 in proportions is difficult. After making this observation, we decided
@@ -329,7 +361,7 @@ health_data %>% ggplot(aes(x = Veggies, fill = Diabetes_012)) +
   labs(title = "Vegetables and Diabetes status", x = "Level of veggie consumption", y = "percentage", fill = "Diabetes status")
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-6-1.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-6-2.png" width="50%" />
+<img src="README_files/figure-gfm/unnamed-chunk-7-1.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-7-2.png" width="50%" />
 
 This next plot is the combined fruits and vegetables feature compared
 with diabetes, which we also plotted as a percent stacked bar chart.
@@ -342,7 +374,7 @@ health_data %>% ggplot(aes(x = Fruits_and_Veggies, fill = Diabetes_012)) +
   labs(title = "Fruit & Veggies vs Diabetes status", x = "Level of fruit and veggie consumption", y = "percentage", fill = "Diabetes status")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 With the percent stacked bar charts we can see much clearer that for
 both the fruit and vegetable plot the proportion of those with diabetes
@@ -365,7 +397,7 @@ health_data %>% ggplot(aes(PhysActivity, fill = Diabetes_012)) +
   labs(title = "Physical activity and Diabetes status", x = "Physical activity level", y = "count", fill = "Diabetes status")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 compared to the diet variables. While there was a noticeable decline in
 the proportion of those with diabetes when looking at those that eat
@@ -388,7 +420,7 @@ health_data %>% mutate(
   labs(title = "Diet, Physical Activity and Diabetes status", x = "Physical activity level", y = "Percentage", fill = "Diabetes status")
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 Here we can see that even for those with a poor diet (eating neither
 fruits nor vegetables) including physical activity into their lifestyle
@@ -437,7 +469,7 @@ health_data %>% filter(
   labs(title = "Days of Poor Mental Health and Diabetes Level", x = "Diabetes level", y = "Num days poor mental health in last 30 days", fill = "Diabetes status")
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-10-1.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-10-2.png" width="50%" />
+<img src="README_files/figure-gfm/unnamed-chunk-11-1.png" width="50%" /><img src="README_files/figure-gfm/unnamed-chunk-11-2.png" width="50%" />
 
 Some interesting observations can be made from these plots. In the
 histogram we can see that there is a spike of responses at about five or
@@ -471,4 +503,4 @@ health_data %>% filter(
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
