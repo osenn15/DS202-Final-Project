@@ -221,7 +221,6 @@ health_data <- health_data %>% mutate(
 
 ``` r
 library(ggplot2)
-library(RColorBrewer)
 ```
 
 #### How do health factors such as blood pressure and BMI affect an individuals chances of getting diabetes?
@@ -247,7 +246,7 @@ health_data |> ggplot(aes(x = HighBP, fill = Diabetes_012)) +
   geom_bar(position = "fill") +
   scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
   ) +
-  labs(title = "Blood Pressure Evaluation", x = "Levels of blood pressure", y = "count", fill = "Diabetes status")
+  labs(title = "Blood Pressure Evaluation", x = "Levels of blood pressure", y = "percentage", fill = "Diabetes status")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
@@ -325,7 +324,7 @@ health_data |> ggplot(aes(x = Stroke, fill = Diabetes_012)) +
   geom_bar(position = "fill") +
   scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
   ) +
-  labs(title = "Stroke Evaluation", x = "Levels of Stroke", y = "count", fill = "Diabetes status")
+  labs(title = "Stroke Evaluation", x = "Levels of Stroke", y = "percentage", fill = "Diabetes status")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
@@ -342,7 +341,7 @@ health_data |> ggplot(aes(x = Stroke, fill = Diabetes_012)) +
   geom_bar(position = "fill") +
   scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
   ) +
-  labs(title = "Stroke Evaluation by Age", x = "Levels of Stroke", y = "count", fill = "Diabetes status") + facet_wrap(~Age)
+  labs(title = "Stroke Evaluation by Age", x = "Levels of Stroke", y = "percentage", fill = "Diabetes status") + facet_wrap(~Age)
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
@@ -360,7 +359,7 @@ health_data |> ggplot(aes(x = HeartDiseaseorAttack, fill = Diabetes_012)) +
   geom_bar(position = "fill") +
   scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
   ) +
-  labs(title = "Heart Disease/Attack Evaluation", x = "Levels of Heart Disease/Attack", y = "count", fill = "Diabetes status")
+  labs(title = "Heart Disease/Attack Evaluation", x = "Levels of Heart Disease/Attack", y = "percentage", fill = "Diabetes status")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
@@ -376,7 +375,7 @@ health_data |> ggplot(aes(x = HeartDiseaseorAttack, fill = Diabetes_012)) +
   geom_bar(position = "fill") +
   scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
   ) +
-  labs(title = "Heart Disease/Attack Evaluation by Age", x = "Levels of Heart Disease/Attack", y = "count", fill = "Diabetes status") + facet_wrap(~Age)
+  labs(title = "Heart Disease/Attack Evaluation by Age", x = "Levels of Heart Disease/Attack", y = "percentage", fill = "Diabetes status") + facet_wrap(~Age)
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
@@ -395,8 +394,8 @@ are associated with it.
 
 For this question we wanted to look at how diet and physical activity
 affect the rates of diabetes and whether prioritizing one over the other
-leads to different chances of getting diabetes. In this survey the only
-features that pertain to diet are the variables Fruits and Veggies.
+could lead to different chances of getting diabetes. In this survey the
+only features that pertain to diet are the variables Fruits and Veggies.
 Recall from the description of these variables that they are both
 categorical with 0 indicating no fruits or vegetables eaten during the
 day and 1 indicating fruit or vegetable consumption one or more times
@@ -481,19 +480,18 @@ health_data %>% ggplot(aes(PhysActivity, fill = Diabetes_012)) +
   geom_bar(position = "fill") +
   scale_fill_manual(values = c("#66C2A5", "#8DA0CB","#FC8D62"), labels = c("0" = "Not Diabetic", "1" = "Prediabetic", "2" = "Diabetic")
   ) +
-  labs(title = "Physical activity and Diabetes status", x = "Physical activity level", y = "count", fill = "Diabetes status")
+  labs(title = "Physical activity and Diabetes status", x = "Physical activity level", y = "percentage", fill = "Diabetes status")
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
-compared to the diet variables. While there was a noticeable decline in
-the proportion of those with diabetes when looking at those that eat
-fruit and/or vegetables compared with those who don’t, we can see from
-the plot that there is a much more noticeable difference in the
-proportion of those with diabetes between those who are physically
-active and those who are not. This suggests that physical activity could
-potentially have a bigger impact on diabetes than diet does. The next
-graph looks at the relationship between diet, physical activity and
+While there was a noticeable decline in the proportion of those with
+diabetes when looking at those that eat fruit and/or vegetables compared
+with those who don’t, we can see from this plot that the difference in
+proportions is much more noticeable when looking at physical activity
+compared to the diet variables. This suggests that physical activity
+could potentially have a bigger impact on diabetes than diet does. The
+next graph looks at the relationship between diet, physical activity and
 diabetes together.
 
 ``` r
@@ -565,7 +563,7 @@ responses slowly declining as the number of days increases. At 30 days
 however, we see another spike of responses which includes the highest
 count of diabetes across all days in the graph. The boxplot shows
 something very similar. Those without diabetes have the lowest median
-for number of poor mental health days, those who are prediabetic tended
+for number of poor mental health days, those who are pre-diabetic tended
 to report a higher number of days and have a higher median, and finally,
 those who are diabetic tended to report the highest number of poor
 mental health days and have the highest median.
@@ -607,8 +605,8 @@ likelihood of one developing diabetes. Therefore, this connection to a
 poor diet could factor in to the relationship between mental health and
 diabetes.
 
-In the next plot will look at the relationship between mental health and
-physical activity levels.
+In the next plot we will look at the relationship between mental health
+and physical activity levels.
 
 ``` r
 health_data %>% filter(
@@ -641,14 +639,18 @@ health is associated with higher rates of diabetes.
 
 This project’s goal was to analyze different health and lifestyle
 factors that could potentially influence the development of diabetes.
-Health factors that we found associated with diabetes was high blood
+Health factors that we found associated with diabetes were high blood
 pressure and a higher BMI. Lifestyle factors that we found associated
-with diabetes are a poor diet(lack of fruit and vegetables) as well as a
-lack of physical activity. Not surprisingly, the combination of physical
-activity and a good diet showed a low rate of diabetes. It is important
-that people are aware of this as they are lifestyle choices that they
-can control. We also found that poor mental health was associated with
-diabetes, and this can be due to the connection between mental health,
-diet, and physical activity. One alarming thing we found was that people
-with diabetes are much more likely to have a stroke or heart problems,
-even at a young age.
+with diabetes were a poor diet (lack of fruits and vegetables) as well
+as a lack of physical activity. Not surprisingly, the combination of
+physical activity and a good diet showed a low rate of diabetes. It is
+important that people are aware of this as they are lifestyle choices
+that they can control. We also found that poor mental health was
+associated with diabetes, which could be due to the connection between
+mental health, diet, and physical activity. It is important that people
+are aware that diabetes is a serious condition with serious
+consequences. One alarming thing we found was that people with diabetes
+are much more likely to have a stroke or heart problems, even at a young
+age. However, if we are aware of the risks and the ways in which they
+can be avoided, we can take the steps necessary to prevent the
+development of diabetes.
