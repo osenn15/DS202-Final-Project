@@ -127,6 +127,7 @@ health_data <- health_data %>% mutate(
 
 ```{r}
 library(ggplot2)
+library(RColorBrewer)
 ```
 
 #### How do health factors such as blood pressure and BMI affect an individuals chances of getting diabetes? 
@@ -154,6 +155,7 @@ health_data |>
 geom_boxplot()
   
 ```
+
 From this chart, we can see that individuals who have a higher BMI are at risk for diabetes. Due to this finding, it is important that people try to remain healthy to protect themselves from a higher BMI or high blood pressure, which can result in diabetes and many other chronic diseases. 
 
 Due to BMI being a controllable variable, what can people do to improve it?
@@ -169,6 +171,7 @@ health_data |>
 
 
 ```
+
 These charts show that your BMI will decrease by being more active and eating healthier. By doing these things, people will become healthier, which will lead them to be less prone to diabetes. By being healthier, blood pressure will also decrease, which also impacts diabetes. This is a specific and actionable plan that people can take to make sure they are protecting themselves against chronic diseases such as diabetes. 
 
 #### Does having diabetes put an individual at risk for having a stroke or heart disease/attack?
@@ -183,6 +186,7 @@ health_data |> ggplot(aes(x = Stroke, fill = Diabetes_012)) +
   ) +
   labs(title = "Stroke Evaluation", x = "Levels of Stroke", y = "count", fill = "Diabetes status")
 ```
+
 As seen in this chart, the risk of getting a stroke while having diabetes is much higher. This is a very scary but also important insight, as it provides individuals' motivation to stay healthy and to be aware of the effects of diabetes. 
 
 How does this vary by age?
@@ -193,6 +197,7 @@ health_data |> ggplot(aes(x = Stroke, fill = Diabetes_012)) +
   ) +
   labs(title = "Stroke Evaluation by Age", x = "Levels of Stroke", y = "count", fill = "Diabetes status") + facet_wrap(~Age)
 ```
+
 This idea that diabetes puts you at risk for a stroke remains consistent throughout each age group, along with some other alarming statistics. Individuals in their late teens and early twenties who would never have to worry about having a stroke because of their age now have to be aware that this is a possibility due to diabetes. 
 
 The variable regarding heart disease will be analyzed next. 
@@ -203,6 +208,7 @@ health_data |> ggplot(aes(x = HeartDiseaseorAttack, fill = Diabetes_012)) +
   ) +
   labs(title = "Heart Disease/Attack Evaluation", x = "Levels of Heart Disease/Attack", y = "count", fill = "Diabetes status")
 ```
+
 As seen in this chart, the risk of having a heart attack or heart disease while having diabetes is much higher and similar to that of a stroke. Again, this is a very scary but also important insight.
 
 How does this vary by age?
@@ -213,6 +219,7 @@ health_data |> ggplot(aes(x = HeartDiseaseorAttack, fill = Diabetes_012)) +
   ) +
   labs(title = "Heart Disease/Attack Evaluation by Age", x = "Levels of Heart Disease/Attack", y = "count", fill = "Diabetes status") + facet_wrap(~Age)
 ```
+
 Similar to the stroke graphs, the idea that diabetes has an impact on heart disease/attacks can be seen in every age group. Also, note that younger individuals are at risk, which is typically unheard of at this age.  
 
 Diabetes is a very serious disease, and individuals need to be aware of the health risks it can bring in order to stay healthy. Being healthy is the most important thing to help prevent this disease and the risks that are associated with it. 
@@ -323,7 +330,7 @@ Some interesting observations can be made from these plots. In the histogram we 
 
 These plots suggest that there is a relationship between mental health and diabetes. However, they may not be directly related. Something else we wanted to explore in this question was whether or not mental health was related to some other factors that in turn would cause diabetes. In this next plot we look at the relationship between mental health and diet to see if diet could possibly be a link between mental health and diabetes.
 
-```{r}
+```{r, fig.show='hold', out.width="50%", warning=FALSE, message=FALSE}
 health_data %>% filter(
   MentHlth != 0
 ) %>% ggplot(aes(x = MentHlth, fill = Fruits_and_Veggies)) +
@@ -331,7 +338,41 @@ health_data %>% filter(
   scale_fill_manual(values = c("#e78ac3", "#a6d854","#ffd92f"), labels = c("0" = "No Fruits or Veggies", "1" = "Some Fruits or Veggies", "2" = "Both Fruits and Veggies")
   ) +
   labs(title = "Days of Poor Mental Health and Diet", x = "Num days poor mental health in last 30 days", y = "count", fill = "Quality of Diet")
+
+
+health_data %>% filter(
+  MentHlth != 0
+) %>% 
+  ggplot(aes(x = Fruits_and_Veggies, y = MentHlth, fill = Fruits_and_Veggies)) +
+  geom_boxplot(staplewidth = 1) +
+  scale_fill_manual(values = c("#e78ac3", "#a6d854","#ffd92f"), labels = c("0" = "No Fruits or Veggies", "1" = "Some Fruits or Veggies", "2" = "Both Fruits and Veggies")
+  ) +
+  labs(title = "Days of Poor Mental Health and Diet", x = "Quality of Diet", y = "Num days poor mental health in last 30 days", fill = "Quality of Diet")
 ```
+
+We can see from the plots that those with a poor diet of no fruits and vegetables tend to report a higher number of days of poor mental health. As we've already seen, diet plays a very important role in the likelihood of one developing diabetes. Therefore, this connection to a poor diet could factor in to the relationship between mental health and diabetes.
+
+In the next plot will look at the relationship between mental health and physical activity levels.
+
+```{r, fig.show='hold', out.width="50%", warning=FALSE, message=FALSE}
+health_data %>% filter(
+  MentHlth != 0
+) %>% ggplot(aes(x = MentHlth, fill = PhysActivity)) +
+  geom_histogram(color = "black") +
+  scale_fill_manual(values = c("#fb8072", "#80b1d3"), labels = c("0" = "No phys activity in last 30 days", "1" = "Phys activity in last 30 days")) +
+  labs(title = "Days of Poor Mental Health and Physical Activity", x = "Num days poor mental health in last 30 days", y = "count", fill = "Level of physical activity")
+
+
+health_data %>% filter(
+  MentHlth != 0
+) %>% ggplot(aes(x = PhysActivity, y = MentHlth, fill = PhysActivity)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("#fb8072", "#80b1d3"), labels = c("0" = "No phys activity in last 30 days", "1" = "Phys activity in last 30 days"))
+```
+
+From this plot it is very clear that those who are not physically active tend to report far more days of poor mental health compared to those who are physically active. we know that physical activity influences the development of diabetes, and now we can see a clear relationship between mental health and physical activity level. Like we concluded from the last plots when considering diet, the connection between mental health and physical activity level could be another reason why poor mental health is associated with higher rates of diabetes.
+
+
 
 
 
