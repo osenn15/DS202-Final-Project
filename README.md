@@ -13,7 +13,7 @@ to understand what steps individual’s can take to mitigate and prevent
 this disease.
 
 It is important to note that while the survey does not differentiate
-between type 1 and type 2 diabetes the vast majority of diabetes cases
+between type 1 and type 2 diabetes, the vast majority of diabetes cases
 are type 2. According to the Centers for Disease Control and Prevention,
 “More than 38 million Americans have diabetes (about 1 in 10), and about
 90% to 95% of them have type 2 diabetes.” While it is possible to have a
