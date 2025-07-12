@@ -6,7 +6,7 @@
 #### Introduction
 
 This project’s goal is to explore and analyze the impact that certain
-health and risk factors have on Diabetes. This topic is of interest
+health and risk factors have on diabetes. This topic is of interest
 because diabetes has been a growing problem in the United States for
 years and can usually be prevented by lifestyle choices. It is important
 to understand what steps individual’s can take to mitigate and prevent
